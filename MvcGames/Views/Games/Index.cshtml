@@ -1,0 +1,79 @@
+﻿@model MvcGames.Models.GameGenreViewModel
+
+@{
+    ViewData["Title"] = "Games Database";
+}
+
+<h1>Games Database</h1>
+
+<div class="d-flex justify-content-between">
+    <p>
+        <a class="btn btn-primary" asp-action="Create">Create New</a>
+    </p>
+
+    <form asp-controller="Games" asp-action="Index" method="get">
+        <p>
+            <select asp-for="GameGenre" asp-items="Model.Genres">
+                <option value="">All</option>
+            </select>
+
+            Title: <input type="text" asp-for="SearchString">
+            <input type="submit" value="Filter" />
+        </p>
+    </form>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Games[0].Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Games[0].Platforms)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Games[0].ReleaseDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Games[0].Genre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Games[0].Developer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Games[0].Publisher)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Games) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Platforms)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReleaseDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Genre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Developer)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Publisher)
+            </td>
+            <td class="d-flex">
+                <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Id">Edit</a> 
+                <a class="btn btn-info" asp-action="Details" asp-route-id="@item.Id">Details</a> 
+                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a> 
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
