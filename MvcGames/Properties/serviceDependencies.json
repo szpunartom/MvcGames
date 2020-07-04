@@ -1,3 +1,12 @@
 {
-  "dependencies": {}
+  "dependencies": {
+    "mssql2": {
+      "type": "mssql",
+      "connectionId": "MvcGamesContext"
+    },
+    "mssql1": {
+      "type": "mssql",
+      "connectionId": "MvcGamesIdentityContextConnection"
+    }
+  }
 }
